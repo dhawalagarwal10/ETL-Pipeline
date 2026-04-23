@@ -1,14 +1,3 @@
-"""
-src/transform.py
-
-All transformation logic lives here:
-  - Type casting
-  - Null handling
-  - Derived columns (hour, day_of_week, revenue_per_item, etc.)
-  - Merging the two sources
-  - Deduplication
-"""
-
 import pandas as pd
 
 
@@ -108,9 +97,7 @@ def merge_sources(df_transactions: pd.DataFrame, df_store_features: pd.DataFrame
 
 
 def run_transformations(df_transactions: pd.DataFrame, df_store_features: pd.DataFrame) -> pd.DataFrame:
-    """
-    Orchestrates the full transformation sequence.
-    """
+
     print("\n--- Starting Transformations ---")
     df = clean_transactions(df_transactions)
     df = enrich_transactions(df)
