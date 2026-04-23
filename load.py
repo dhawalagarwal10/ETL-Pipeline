@@ -1,24 +1,8 @@
-"""
-src/load.py
-
-Handles loading the transformed data into Parquet format.
-
-We write two outputs:
-  1. Full enriched dataset  (all_transactions_enriched.parquet)
-  2. Branch-level summary   (branch_summary.parquet)
-
-Parquet is used because it's columnar, compressed, and fast to query
-with pandas, DuckDB, Spark, or any downstream tool.
-"""
-
 import os
 import pandas as pd
 
 
 def load_full_dataset(df: pd.DataFrame, output_dir: str):
-    """
-    Writes the full enriched transaction dataset to a single Parquet file.
-    """
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "all_transactions_enriched.parquet")
 
@@ -29,10 +13,6 @@ def load_full_dataset(df: pd.DataFrame, output_dir: str):
 
 
 def load_branch_summary(df: pd.DataFrame, output_dir: str):
-    """
-    Builds and writes a branch-level summary Parquet.
-    Useful as a pre-aggregated mart for dashboards or reporting.
-    """
     summary = (
     df.groupby(["branch", "city", "category"])
     .agg(
@@ -54,10 +34,7 @@ def load_branch_summary(df: pd.DataFrame, output_dir: str):
     print(f"[LOAD] Branch summary written to {output_path} ({size_kb:.1f} KB, {len(summary)} rows).")
 
 
-def run_load(df: pd.DataFrame, output_dir: str):
-    """
-    Orchestrates all load steps.
-    """
+def run_load(df: pd.DataFrame, output_dir: str
     print("\n--- Starting Load ---")
     load_full_dataset(df, output_dir)
     load_branch_summary(df, output_dir)
