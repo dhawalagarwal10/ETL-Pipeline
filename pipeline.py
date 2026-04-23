@@ -1,23 +1,3 @@
-"""
-pipeline.py
-
-Main entry point for the Walmart Retail ETL Pipeline.
-
-Flow:
-  Extract -> Transform -> Load
-
-Sources:
-  - SQLite DB       : data/raw/walmart_sales.db
-  - Parquet file    : data/raw/store_features.parquet
-
-Output:
-  - data/processed/all_transactions_enriched.parquet
-  - data/processed/branch_summary.parquet
-
-Run:
-  python pipeline.py
-"""
-
 import time
 from extract import extract_from_sql, extract_from_parquet
 from transform import run_transformations
