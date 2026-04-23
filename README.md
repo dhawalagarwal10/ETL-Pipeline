@@ -13,10 +13,9 @@ walmart_pipeline/
 ├── data/
 │   ├── raw/                    # Source data (SQLite DB + Parquet file)
 │   └── processed/              # Output Parquet files
-├── src/
-│   ├── extract.py              # Extraction logic
-│   ├── transform.py            # Cleaning, enrichment, merging
-│   └── load.py                 # Loading to Parquet
+├── extract.py              # Extraction logic
+├── transform.py            # Cleaning, enrichment, merging
+├── load.py                 # Loading to Parquet
 ├── pipeline.py                 # Main ETL entry point
 ├── setup_sources.py            # One-time data setup script
 └── requirements.txt
@@ -34,7 +33,7 @@ pip install -r requirements.txt
 
 ### 2. Get the dataset
 
-**Option A – Kaggle API (recommended)**
+**Option A – Kaggle API**
 
 Make sure your Kaggle API token is at `~/.kaggle/kaggle.json`.
 Then run:
@@ -86,26 +85,6 @@ python pipeline.py
 
 - `all_transactions_enriched.parquet` — Full enriched dataset (Snappy compressed)
 - `branch_summary.parquet` — Pre-aggregated mart grouped by branch, city, catogery
-
----
-
-## Output columns (enriched dataset)
-
-| Column                     | Description                              |
-| -------------------------- | ---------------------------------------- |
-| invoice_id                 | Unique transaction ID                    |
-| branch, city               | Store location                           |
-| customer info              |
-| catogery                   | Product category                         |
-| unit_price, quantity       | Transaction details                      |
-| total                      | Financials                               |
-| date, time                 | Raw datetime                             |
-| hour, day_of_week, month   | Time-based features                      |
-| week_of_year               | ISO week number                          |
-| revenue_before_tax         | unit_price \* quantity                   |
-| time_of_day                | Morning / Afternoon / Evening / Night    |
-| avg_unit_price, avg_rating | Store-level averages from Parquet source |
-| above_avg_rating           | Boolean flag vs store average            |
 
 ---
 
