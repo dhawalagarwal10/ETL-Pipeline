@@ -1,17 +1,3 @@
-"""
-setup_sources.py
-
-Run this once before the pipeline. It:
-  1. Downloads the Walmart 10K dataset from Kaggle
-  2. Loads the CSV into a local SQLite database (simulating a SQL data source)
-  3. Saves the store-level feature data as a Parquet file (simulating a file-based source)
-
-Requirements:
-  - Kaggle account + API token saved at ~/.kaggle/kaggle.json
-  - OR manually download from https://www.kaggle.com/datasets/najir0123/walmart-10k-sales-datasets
-    and place Walmart.csv inside data/raw/
-"""
-
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -36,7 +22,6 @@ def load_csv() -> pd.DataFrame:
     if not os.path.exists(r"C:\\Users\\dhawa\\OneDrive\\Desktop\\Walmart.csv"):
         raise FileNotFoundError(
             f"CSV not found at {CSV_PATH}. "
-            "Run with --download flag or place Walmart.csv in data/raw/ manually."
         )
     df = pd.read_csv(r"C:\Users\dhawa\OneDrive\Desktop\Walmart.csv")
     print(f"Loaded {len(df)} rows from CSV.")
@@ -44,13 +29,6 @@ def load_csv() -> pd.DataFrame:
 
 
 def create_sql_source(df: pd.DataFrame):
-    """
-    Loads transaction-level data into SQLite.
-    This represents the transactional database source in the pipeline.
-    Columns: invoice_id, branch, city, customer_type, gender,
-             product_line, unit_price, quantity, tax_5pct,
-             total, date, time, payment, cogs, gross_income, rating
-    """
     # Rename columns to snake_case for SQL friendliness
     df_sql = df.copy()
     df_sql.columns = (
