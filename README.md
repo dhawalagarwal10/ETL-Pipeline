@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 ### 2. Get the dataset
 
-**Option A – Kaggle API**
+**Option A - Kaggle API**
 
 Make sure your Kaggle API token is at `~/.kaggle/kaggle.json`.
 Then run:
@@ -42,7 +42,7 @@ Then run:
 python setup_sources.py --download
 ```
 
-**Option B – Manual download**
+**Option B - Manual download**
 
 1. Go to https://www.kaggle.com/datasets/najir0123/walmart-10k-sales-datasets
 2. Download `Walmart.csv`
@@ -55,8 +55,8 @@ python setup_sources.py
 
 This creates two source files:
 
-- `data/raw/walmart_sales.db` — SQLite database with all transactions
-- `data/raw/store_features.parquet` — Aggregated store-level features
+- `data/raw/walmart_sales.db` - SQLite database with all transactions
+- `data/raw/store_features.parquet` - Aggregated store-level features
 
 ---
 
@@ -72,8 +72,8 @@ python pipeline.py
 
 ### Extract
 
-- `extract_from_sql()` — Queries all transaction records from the SQLite DB using SQLAlchemy
-- `extract_from_parquet()` — Reads the store features Parquet file into a DataFrame
+- `extract_from_sql()` - Queries all transaction records from the SQLite DB using SQLAlchemy
+- `extract_from_parquet()` - Reads the store features Parquet file into a DataFrame
 
 ### Transform
 
