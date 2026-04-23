@@ -78,13 +78,13 @@ python pipeline.py
 ### Transform
 
 - **Clean**: Type-cast date/time columns, handle nulls, deduplicate on invoice_id
-- **Enrich**: Add derived columns — hour, day_of_week, month, week_of_year, revenue_before_tax, time_of_day bucket
+- **Enrich**: Add derived columns - hour, day_of_week, month, week_of_year, revenue_before_tax, time_of_day bucket
 - **Merge**: Join transactions with store features on branch + city + catogery
 
 ### Load
 
-- `all_transactions_enriched.parquet` — Full enriched dataset (Snappy compressed)
-- `branch_summary.parquet` — Pre-aggregated mart grouped by branch, city, catogery
+- `all_transactions_enriched.parquet` - Full enriched dataset (Snappy compressed)
+- `branch_summary.parquet` - Pre-aggregated mart grouped by branch, city, catogery
 
 ---
 
